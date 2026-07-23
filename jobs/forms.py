@@ -1,0 +1,52 @@
+from django import forms
+from .models import JobApplication
+
+class JobApplicationForm(forms.ModelForm):
+    class Meta:
+        model = JobApplication
+        fields = [
+            'company_name', 
+            'position', 
+            'job_location', 
+            'salary', 
+            'status', 
+            'application_date', 
+            'deadline', 
+            'notes'
+        ]
+        # HTML Widgets for date picker and styling
+        widgets = {
+            'application_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'deadline': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'position': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_location': forms.TextInput(attrs={'class': 'form-control'}),
+            'salary': forms.NumberInput(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-select'}),
+            'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
+
+    # Validation: Salary cannot be negative
+    def clean_salary(self):
+        salary = self.cleaned_data.get('salary')
+        if salary is not None and salary < 0:
+            raise forms.ValidationError("Salary cannot be negative.")
+        return salary
+
+    # Validation: Notes cannot exceed 500 characters
+    def clean_notes(self):
+        notes = self.cleaned_data.get('notes')
+        if notes and len(notes) > 500:
+            raise forms.ValidationError("Notes cannot exceed 500 characters.")
+        return notes
+
+    # Validation: Deadline cannot be earlier than application date
+    def clean(self):
+        cleaned_data = super().clean()
+        app_date = cleaned_data.get('application_date')
+        deadline = cleaned_data.get('deadline')
+
+        if app_date and deadline and deadline < app_date:
+            self.add_error('deadline', "Deadline cannot be earlier than the application date.")
+        
+        return cleaned_data

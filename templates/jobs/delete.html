@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm p-4 col-md-6 mx-auto text-center">
+    <h3 class="text-danger">Confirm Deletion</h3>
+    <p>Are you sure you want to delete the job application for <strong>{{ job.position }}</strong> at <strong>{{ job.company_name }}</strong>?</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'job_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
