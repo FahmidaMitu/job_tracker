@@ -74,4 +74,4 @@ Once the server is running, access the application through these links:
 * **Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
 ## 🎥 UI Demonstration Video
-[Click here to watch the project video/screenshots](https://drive.google.com/file/d/1fGj-KOLx_2dMWMbwRIfPrHJIOdG_lJJ1/view?usp=drive_link)
+[Click here to watch the project video](https://drive.google.com/file/d/1fGj-KOLx_2dMWMbwRIfPrHJIOdG_lJJ1/view?usp=drive_link)
