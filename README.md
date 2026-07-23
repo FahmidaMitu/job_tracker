@@ -72,3 +72,6 @@ python manage.py runserver
 Once the server is running, access the application through these links:
 * **Main Dashboard:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 * **Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
+## 🎥 UI Demonstration Video
+[Click here to watch the project video/screenshots](YOUR_DRIVE_LINK_HERE)
